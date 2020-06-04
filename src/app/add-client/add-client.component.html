@@ -1,0 +1,90 @@
+<style>
+    #span{
+        color: red;
+    } 
+</style>
+<div class="col-md-4 offset-md-4 mt-5">
+    <form #addNewClient='ngForm' (submit)='addClient(addNewClient)'>
+        <div class="card-header bg-info">
+            <h4 style="text-align: center;">Add Client Form</h4>
+        </div>
+        <div class="card-body bg-light">
+            <p>All the fields with <span id="span">*</span> are mandatory</p>
+            <div class="form-group">
+                <input type="number" hidden name="loan_id">
+                <label for="name">Full Name <span id="span">*</span></label>
+                <input type="text" name="name" id="fullName" class="form-control" 
+                required #fullName='ngModel' ngModel placeholder="enter full name" required pattern="[A-Z a-z]{2,20}">
+                <div *ngIf='fullName.invalid && fullName.touched'>
+                    <div class="alert alert-danger" *ngIf='fullName.errors.required'>
+                        <small>this field is mandatory</small>
+                    </div>
+                    <div class="alert alert-danger" *ngIf='fullName.errors.pattern'>
+                        <small>name can have only letters, 2-20 characters</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">email<span id="span">*</span></label>
+                <input type="text" name="email" id="email" class="form-control" 
+                #email='ngModel' ngModel required placeholder="Enter Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                <div *ngIf='email.invalid && email.touched'>
+                    <div class="alert alert-danger" *ngIf='email.errors.required'>
+                        <small>this field is mandatory</small>
+                    </div>
+                    <div class="alert alert-danger" *ngIf='email.errors.pattern'>
+                        <small>enter a valid email</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="city">City<span id="span">*</span></label>
+                <select #city='ngModel' ngModel required name="city" class="custom-select"
+                required>
+                    <option selected disabled hidden value="">Choose your city</option>
+                    <option *ngFor='let city of cities'>{{city}}</option>
+                </select>
+                <div *ngIf='city.invalid && city.touched'>
+                    <div class="alert alert-danger" *ngIf='city.errors.required'>
+                        <small>this field is mandatory</small>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="text">Postal Code<span id="span">*</span></label>
+                <input type="text" name="postalCode" id="postalcode" class="form-control" 
+                required placeholder="Enter Postal Code" pattern="^[1-9][0-9]{5}$" #postalcode='ngModel' ngModel>
+                <div *ngIf='postalcode.invalid && postalcode.touched'>
+                    <div class="alert alert-danger" *ngIf='postalcode.errors.required'>
+                        <small>this field is mandatory</small>
+                    </div>
+                    <div class="alert alert-danger" *ngIf='postalcode.errors.pattern'>
+                        <small>postal code must be of 6 digits</small>
+                    </div>
+                    <div class="alert alert-danger" *ngIf='postalcode.errors.pattern'>
+                        <small>postalcode must be a 6 digit number, starts with 1-9</small>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="text">Phone<span id="span">*</span></label>
+                <input type="tel" name="phone" id="phone" class="form-control" 
+                required placeholder="Enter phone(+91)" pattern="[6789][0-9]{9}" #phone='ngModel' ngModel>
+                <div *ngIf='phone.invalid && phone.touched'>
+                    <div class="alert alert-danger" *ngIf='phone.errors.required'>
+                        <small>this field is mandatory</small>
+                    </div>
+                    <div class="alert alert-danger" *ngIf='phone.errors.pattern'>
+                        <small>phone number must be of 10 digits, starts with 6/7/8/9</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-outline-primary form-control float-right">
+            Add Client
+        </button>
+        
+    </form>
+</div>

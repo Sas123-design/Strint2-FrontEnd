@@ -1,0 +1,50 @@
+<div class="alert alert-danger" *ngIf='message'>{{message}}</div>
+<div class="col-md-8 offset-2 mt-5">
+    <!-- <input type="text"
+      class="form-control"  placeholder="Search here..." [(ngModel)]="searchValue">
+  <div class="row">
+    <h2>{{searchValue}}</h2>
+    <h2 class="col-md-2">Sort by</h2>
+    <div class="form-group">
+      <select class="form-control" name="" id="" [(ngModel)]="fieldName" (change)='getSortedData()'>
+        <option value="loanType">Loan Type</option>
+        <option value="interestRate">Interest Rate</option>
+        <option value="validAge">Valid Age</option>
+        <option value="maxTenurePeriod">Max Tenure Peroid</option>
+      </select>
+    </div>
+  </div> -->
+  <table class="table table-bordered">
+    <tr>
+      <th>User Id</th>
+      <th>Name</th>
+      <th>email</th>
+      <th>Age</th>
+      <th>Address</th>
+      <th>Mobile</th>
+      <th>Role</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+    <tr *ngFor="let user of users">
+      <td>{{user.userid}}</td>
+      <td>{{user.fullName}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.age}}</td>
+      <td>{{user.address}}</td>
+      <td>{{user.phone}}</td>
+      <td>{{user.role}}</td>
+      <td>
+        <button class="btn btn-outline-primary">Update</button>
+      </td>
+      <td>
+        <button class="btn btn-outline-danger" (click)='deleteUser(user)'>Delete</button>
+      </td>
+    </tr>
+  </table>
+  <!-- <mat-paginator [length]="totlaItems" [pageSize]="itemPerPage" [pageSizeOptions]="[2, 5, 10, 25, 100]"
+    (page)='getNextPageItems($event)'>
+  </mat-paginator> -->
+
+
+</div>

@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-info">
+    <a class="navbar-brand" href="#">MakeYourLoan</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto mt-2 mg-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/home">Home <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item" *ngIf='service.isLogged()'>
+            <a routerLink="/apply-loan" class="nav-link">Apply for Loan</a>
+        </li>
+        <li class="nav-item" *ngIf='service.isAdmin()'>
+            <a routerLink="/add-client" class="nav-link">Add Client</a>
+        </li>
+        <li class="nav-item" *ngIf='service.isAdmin()'>
+            <a routerLink="/add-loan" class="nav-link">Add Loan</a>
+        </li>
+        <li class="nav-item" *ngIf='service.isLogged()'>
+            <a routerLink="/loanprograms" class="nav-link">Loan Programs</a>
+        </li>
+        <li class="nav-item" *ngIf='service.isAdmin()'>
+            <a routerLink="/client" class="nav-link" >Clients</a>
+        </li>
+        <li class="nav-item" *ngIf='service.isAdmin()'>
+            <a routerLink="/view-user" class="nav-link">Users</a>
+        </li>
+        <li class="nav-item" *ngIf='service.isLogged()'>
+            <a routerLink="/view-applications" class="nav-link">Your Applications</a>
+        </li>
+        <li class="nav-item" *ngIf='service.isLad() || service.isAdmin()'>
+            <a routerLink="/view-approved" class="nav-link">Approved Applications</a>
+        </li>
+        <li class="nav-item" *ngIf='service.isLad() || service.isAdmin()'>
+            <a routerLink="/view-rejected" class="nav-link">Rejected Applications</a>
+        </li>
+        <li class="nav-item" *ngIf='service.isLad() || service.isAdmin()'>
+            <a routerLink="/view-requested" class="nav-link">Requested Applications</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item" *ngIf='!service.isLogged()'>
+            <a routerLink="/login" class="nav-link">Login</a>
+        </li>
+        <li class="nav-item" *ngIf='!service.isLogged()'>
+            <a routerLink="/registration" class="nav-link">Registration</a>
+        </li>
+        <li class="nav-item" *ngIf='service.isLogged()'>
+            <a style="cursor: pointer" class="nav-link" (click)='service.logout()'>Logout</a>
+        </li>
+      </ul>
+    </div> 
+</nav>
+
+

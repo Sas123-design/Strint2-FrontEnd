@@ -1,0 +1,45 @@
+<div class="alert alert-success" *ngIf='success'>{{success}}</div>
+<div class="col-md-8 offset-2 mt-4">
+    <table class="table table-bordered">
+        <thead class="thead-light" style="text-align: center;">
+            <th scope="col">Loan Id</th>
+            <th scope="col">Applicant Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Email</th>
+            <th scope="col">Occupation</th>
+            <th scope="col">Salary</th>
+            <th scope="col">Loan Type</th>
+            <th scope="col">Loan Amount</th>
+            <th scope="col">Status</th>
+            <th *ngIf='userService.isLad()' scope="col" colspan="2">Edit</th>
+        </thead>
+        <tbody>
+          <ng-container *ngFor = 'let user of users'>
+              <ng-container *ngFor = 'let app of user.applyLoan'>
+                  <ng-container *ngIf="app.status === 'requested'">
+                      <tr>
+                          <td>{{app.loanId}}</td>
+                          <td>{{user.fullName}}</td>
+                          <td>{{user.age}}</td>
+                          <td>{{user.email}}</td>
+                          <td>{{app.occupation}}</td>
+                          <td>{{app.salary}}</td>
+                          <td>{{app.loanType}}</td>
+                          <td>{{app.loanAmount}}</td>
+                          <td>{{app.status}}</td>
+                          <td *ngIf='userService.isLad()'>
+                            <button type="button" class="btn btn-outline-success"
+                            (click)='makeApproved(app)'>Approve</button>
+                          </td>
+                          <td *ngIf='userService.isLad()'>
+                            <button type="button" class="btn btn-outline-danger"
+                            (click)='makeRejected(app)'>Reject</button>
+                          </td>
+                      </tr>
+                  </ng-container>
+              </ng-container>
+          </ng-container>
+        </tbody>
+    </table>
+    
+  </div>

@@ -1,0 +1,36 @@
+<div class="col-md-8 offset-2 mt-4">
+    <table class="table table-bordered">
+        <thead class="thead-light">
+            <th scope="col">Loan Id</th>
+            <th scope="col">Applicant Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Email</th>
+            <th scope="col">Occupation</th>
+            <th scope="col">Salary</th>
+            <th scope="col">Loan Type</th>
+            <th scope="col">Loan Amount</th>
+            <th scope="col">Status</th>
+        </thead>
+        <tbody>
+          <ng-container *ngFor = 'let user of users'>
+              <ng-container *ngFor = 'let app of user.applyLoan'>
+                  <ng-container *ngIf="app.status === 'rejected'">
+                      <tr>
+                          <td>{{app.loanId}}</td>
+                          <td>{{user.fullName}}</td>
+                          <td>{{user.age}}</td>
+                          <td>{{user.email}}</td>
+                          <td>{{app.occupation}}</td>
+                          <td>{{app.salary}}</td>
+                          <td>{{app.loanType}}</td>
+                          <td>{{app.loanAmount}}</td>
+                          <td>{{app.status}}</td>
+                      </tr>
+                  </ng-container>
+              </ng-container>
+          </ng-container>
+        </tbody>
+    </table>
+    <mat-paginator [length]="totalItems" [pageSize]="itemsPerPage" [pageSizeOptions]="[2,5,10,15]">
+    </mat-paginator>
+  </div>

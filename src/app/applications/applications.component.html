@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="col-md-8 offset-2 mt-4">
+        <input type="text"
+          class="form-control" placeholder="Search by..." [(ngModel)]="searchValue">
+  
+      <div class="row">
+          <h2 class="col-md-2">Search by...</h2>
+          <div class="form-group">
+            <label for=""></label>
+            <select class="form-control" name="" id="" [(ngModel)]="searchBy" (change)="getSotedData()">
+              <option>applicantName</option>
+              <option>salary</option>
+              <option>panNo</option>
+            </select>
+          </div>
+      </div>
+      <div class="row">
+          <h2 class="col-md-2">Sort by...</h2>
+          <div class="form-group">
+            <label for=""></label>
+            <select class="form-control" name="" id="" [(ngModel)]="fieldName" (change)="getSotedData()">
+              <option>applicantName</option>
+              <option>salary</option>
+              <option>panNo</option>
+            </select>
+          </div>
+      </div>
+      <table class="table table-bordered">
+          <thead class="thead-light">
+              <th>Loan Id</th>
+              <th>Applicant Name</th>
+              <th>Age</th>
+              <th>Email</th>
+              <th>Occupation</th>
+              <th>Salary</th>
+              <th>Loan Type</th>
+              <th>PAN</th>
+              <th>Loan Amount</th>
+              <th>Status</th>
+          </thead>
+          <tbody> 
+            <ng-container *ngFor='let user of users'>
+              <ng-container *ngFor='let app of user.applyLoan'>
+                  <td>{{app.loanId}}</td>
+                  <td>{{user.fullName}}</td>
+                  <td>{{user.age}}</td>
+                  <td>{{user.email}}</td>
+                  <td>{{app.occupation}}</td>
+                  <td>{{app.salary}}</td>
+                  <td>{{app.loanType}}</td>
+                  <td>{{app.panNo}}</td>
+                  <td>{{app.loanAmount}}</td>
+                  <td>{{app.status}}</td>
+              </ng-container>  
+            </ng-container>
+          </tbody>
+      </table>
+      <mat-paginator [length]="totalItems" [pageSize]="itemsPerPage" [pageSizeOptions]="[2, 5, 10, 25, 100]"
+      (page)=getNextPageItems($event)>
+      </mat-paginator>
+  </div>    
+</body>
+</html>
+

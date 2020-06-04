@@ -1,0 +1,56 @@
+<div class="alert alert-danger" *ngIf='message'>{{message}}</div>
+<div class="col-md-8 offset-2 mt-5">
+        <input type="text"
+          class="form-control" placeholder="Search here..." [(ngModel)]="searchValue">
+    <div class="row">
+        <h2 class="col-md-2">Search by</h2>
+        <div class="form-group">
+          <select class="form-control" name="" id="" [(ngModel)]="searchBy" (change)="getSortedData()">
+            <option value="name">Name</option>
+            <option value="email">Email</option>
+            <option value="phone">Mobile</option>
+            <option value="city">City</option>
+            <option value="postalCode">Postal Code</option>
+          </select>
+        </div>
+    </div>
+    <div class="row">
+        <h2 class="col-md-2">Sort by</h2>
+        <div class="form-group">
+          <select class="form-control" name="" id="" [(ngModel)]="fieldName" (change)="getSortedData()">
+            <option value="name">Name</option>
+            <option value="email">Email</option>
+            <option value="phone">Mobile</option>
+            <option value="city">City</option>
+            <option value="postalCode">Postal Code</option>
+          </select>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <tr class="thead-light">
+            <th>Name</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>City</th>
+            <th>Postal Code</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <tr *ngFor="let c of clients | client: searchValue: searchBy">
+            <td>{{c.name}}</td>
+            <td>{{c.email}}</td>
+            <td>{{c.phone}}</td>
+            <td>{{c.city}}</td>
+            <td>{{c.postalCode}}</td>
+            <td>
+                <button class="btn btn-outline-primary" (click)='selectClient(c)'>Edit</button>
+            </td>
+            <td>
+                <button class="btn btn-outline-danger" (click)='deleteClient(c)'>Delete</button>
+            </td>
+        </tr>
+    </table>
+    <mat-paginator [length]="totalItems" [pageSize]="itemsPerPage" [pageSizeOptions]="[2, 5, 10, 25, 100]"
+    (page)='getNextPageItems($event)'>
+    </mat-paginator>
+</div>

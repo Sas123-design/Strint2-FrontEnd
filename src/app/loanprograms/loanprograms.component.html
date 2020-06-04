@@ -1,0 +1,43 @@
+<div class="col-md-8 offset-2 mt-5">
+    <input type="text"
+      class="form-control"  placeholder="Search here..." [(ngModel)]="searchValue">
+  <div class="row">
+    <h2>{{searchValue}}</h2>
+    <h2 class="col-md-2">Sort by</h2>
+    <div class="form-group">
+      <select class="form-control" name="" id="" [(ngModel)]="fieldName" (change)='getSortedData()'>
+        <option value="loanType">Loan Type</option>
+        <option value="interestRate">Interest Rate</option>
+        <option value="validAge">Valid Age</option>
+        <option value="maxTenurePeriod">Max Tenure Peroid</option>
+      </select>
+    </div>
+  </div>
+  <table class="table table-bordered">
+    <tr>
+      <th>Loan type</th>
+      <th>Interest Rate</th>
+      <th>Age</th>
+      <th>Maximum Tenure Period</th>
+      <th *ngIf='service.isAdmin()'>Edit</th>
+      <th *ngIf='service.isAdmin()'>Delete</th>
+    </tr>
+    <tr *ngFor="let program of programs | searchLoan: searchValue: 'loanType'">
+      <td>{{program.loanType}}</td>
+      <td>{{program.interestRate}}</td>
+      <td>{{program.validAge}}</td>
+      <td>{{program.maxTenurePeriod}}</td>
+      <td *ngIf='service.isAdmin()'>
+        <button class="btn btn-outline-primary" (click)='selectProgram(program)'>Update</button>
+      </td>
+      <td *ngIf='service.isAdmin()'>
+        <button class="btn btn-outline-dark" (click)='deleteProgram(program)'>Delete</button>
+      </td >
+    </tr>
+  </table>
+  <mat-paginator [length]="totlaItems" [pageSize]="itemPerPage" [pageSizeOptions]="[2, 5, 10, 25, 100]"
+    (page)='getNextPageItems($event)'>
+  </mat-paginator>
+
+
+</div>

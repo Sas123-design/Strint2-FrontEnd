@@ -1,0 +1,116 @@
+<div class="col-md-4 offset-md-4 mt-5">
+    <form #addLoanApplication='ngForm' (ngSubmit)='makeNewLoan(addLoanApplication)'>
+        <div class="card-header bg-info">
+            <h4 style="text-align: center;">Loan Application Form</h4>
+        </div>
+        <div class="card-body bg-light">
+            <p>All the fields with <span style="color:red;">*</span> are mandatory</p>
+            <!-- <div class="form-group">
+                <input type="number" hidden name="loan_id">
+                <label for="applicantName">Full Name <span style="color: red;">*</span></label>
+                <input type="text" name="applicantName" id="fullName" class="form-control" 
+                required #applicantName='ngModel' ngModel placeholder="enter full name" required pattern="[A-Z a-z]*">
+                <div *ngIf='applicantName.invalid && applicantName.touched'>
+                    <div class="alert alert-danger" *ngIf='applicantName.errors.required'>
+                        <small>this field is mandatory</small>
+                    </div>
+                    <div class="alert alert-danger" *ngIf='applicantName.errors.pattern'>
+                        <small>name can have only letters</small>
+                    </div>
+                </div>
+            </div> -->
+            <div class="form-group">
+                <label for="age">Age <span style="color: red;">*</span></label>
+                <input #age='ngModel' ngModel type="text" name="age" id="age" min="18" max="65"
+                class="form-control" required placeholder="enter age" pattern="^0*(1[89]|[2-6][0-9]|70)$">
+                <div *ngIf='age.invalid && age.touched'>
+                    <div class="alert alert-danger" *ngIf='age.errors.required'>
+                        <small>this field is mandatory</small>
+                    </div>
+                    <div class="alert alert-danger" *ngIf='age.errors.pattern'>
+                        <small>must be between 18 and 70</small>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="occupation">Occupation<span style="color: red;">*</span></label>
+                <input type="text" name="occupation" id="occupation" class="form-control" 
+                #occupation='ngModel' ngModel required placeholder="enter occupation"
+                 pattern="[A-Z a-z]*">
+                <div *ngIf='occupation.invalid && occupation.touched'>
+                    <div class="alert alert-danger" *ngIf='occupation.errors.required'>
+                        <small>this field is mandatory</small>
+                    </div>
+                    <div class="alert alert-danger" *ngIf='occupation.errors.pattern'>
+                        <small>Occupation can't have numbers</small>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="salary">Salary<span style="color: red;">*</span></label>
+                <input type="double" name="salary" id="salary" class="form-control" 
+                required placeholder="Enter Salary" #salary='ngModel' ngModel pattern="^[0-9]+(\.[0-9]{1,2})?$">
+                <div *ngIf='salary.invalid && salary.touched'>
+                    <div class="alert alert-danger" *ngIf='salary.errors.required'>
+                        <small>this field is mandatory</small>
+                    </div>
+                    <div class="alert alert-danger" *ngIf='salary.errors.pattern'>
+                        <small>Invalid salary</small>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="form-group">
+                <label for="panNo">PAN<span style="color: red;">*</span></label>
+                <input type="text" name="panNo" id="pan" class="form-control" #pan='ngModel' ngModel
+                pattern="([A-Z]){5}([0-9]){4}([A-Z]){1}$" placeholder="Enter PAN" required>
+                <div *ngIf='pan.invalid && pan.touched'>
+                    <div class="alert alert-danger" *ngIf='pan.errors.required'>
+                        <small>this field is mandatory</small>
+                    </div>
+                    <div class="alert alert-danger" *ngIf='pan.errors.pattern'>
+                        <small>Please enter a valid  PAN, eg: ABCDE1234F</small>
+                    </div>
+                </div>
+            </div> -->
+            <div class="form-group">
+                <label for="loanAmount">Loan Amount<span style="color: red;">*</span></label>
+                <input type="number" name="loanAmount" id="loanAmount" class="form-control"
+                required placeholder="Enter Loan Amount" #loanAmount='ngModel' ngModel pattern="^[0-9]+(\.[0-9]{1,2})?$">
+                <div *ngIf='loanAmount.invalid && loanAmount.touched'>
+                    <div class="alert alert-danger" *ngIf='loanAmount.errors.required'>
+                        <small>this field is mandatory</small>
+                    </div>
+                    <div class="alert alert-danger" *ngIf='loanAmount.errors.pattern'>
+                        <small>Invalid Loan Amount</small>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="loanType">Choose a loan<span style="color:red;">*</span></label>
+                <select class="custom-select" name="loanType" id="loantype" #loantype='ngModel' ngModel required>
+                    <option selected hidden disabled value="">Chooce a loan</option>
+                    <option value="Home Purchase Loan">Home Purchase Loan</option>
+                    <option value="Home Construction Loan">Home Construction Loan</option>
+                    <option value="House Improvement Loan">House Improvement Loan</option>
+                    <option value="House Extension Loan">House Extension Loan</option>
+                    <option value="Land Purchase Loan">Land Purchase Loan</option>
+                </select>
+                <div *ngIf='loantype.invalid && loantype.touched'>
+                    <div class="alert alert-danger" *ngIf='loantype.errors.required'>
+                        <small>this field is mandatory</small>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="card-footer bg-info">
+            <button class="btn btn-outline-white">
+                Reset
+            </button>
+            <button  class="btn btn-outline-white float-right">
+                Apply
+            </button>
+            
+        </div>
+    </form>
+</div>

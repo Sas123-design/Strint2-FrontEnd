@@ -1,0 +1,25 @@
+<div class="alter alter-danger" *ngIf='message'>{{message}}</div>
+<div class="col-md-4 offset-md-4 mt-5">
+    <form #loginuser='ngForm' (submit)='login(loginuser)'>
+        <div class="card-header bg-info">
+            <h4 style="text-align: center;">Login</h4>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="">Email</label>
+                <input type="email" #email='ngModel' ngModel name="email" id="email" class="form-control" 
+                required placeholder="enter email">
+            </div>
+            <div class="form-group">
+                <label for="">Password</label>
+                <input type="password" #password='ngModel' ngModel name="password" id="password" class="form-control" 
+                required placeholder="enter password">
+            </div>
+            <p>New User? <a routerLink="/registration">Sign Up</a></p>
+        </div>
+
+        <button type="submit" class="btn btn-outline-primary float-right">
+            Login
+        </button>
+    </form>
+</div>
