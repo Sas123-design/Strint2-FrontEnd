@@ -23,7 +23,7 @@ import { ViewApplicationsComponent } from './view-applications/view-applications
 
 const routes: Routes = [
   {path: 'login', component:LoginComponent},
-  {path: 'apply-loan', component:ApplyLoanComponent},
+  {path: 'apply-loan', component:ApplyLoanComponent, data:{roles:['ROLE_CUSTOMER']}, canActivate: [AuthGaurd]},
   {path: 'add-client', component:AddClientComponent, data:{roles: ['ROLE_ADMIN']} ,canActivate: [AuthGaurd]},
   {path: 'add-loan', component:AddLoanComponent, data:{roles: ['ROLE_ADMIN']} ,canActivate: [AuthGaurd]},
   {path: 'loanprograms', component:LoanprogramsComponent},

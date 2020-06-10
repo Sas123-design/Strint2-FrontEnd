@@ -86,7 +86,7 @@
             <div class="form-group">
                 <label for="password">Password<span style="color: red;">*</span></label>
                 <input type="password" name="password" id="password" class="form-control" #password='ngModel' ngModel 
-                required placeholder="Enter Password" pattern="(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!]).{8,}">
+                required placeholder="Enter Password" pattern="(?=.*[a-z])(?=.*\\d)(?=.*[A-Z])(?=.*[@#$%!]).{8,}">
                 <div *ngIf='password.invalid && password.touched'>
                     <div class="alert alert-danger" *ngIf='password.errors.required'>
                         <small>this field is mandatory</small>

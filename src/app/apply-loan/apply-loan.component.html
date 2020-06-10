@@ -59,19 +59,6 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="form-group">
-                <label for="panNo">PAN<span style="color: red;">*</span></label>
-                <input type="text" name="panNo" id="pan" class="form-control" #pan='ngModel' ngModel
-                pattern="([A-Z]){5}([0-9]){4}([A-Z]){1}$" placeholder="Enter PAN" required>
-                <div *ngIf='pan.invalid && pan.touched'>
-                    <div class="alert alert-danger" *ngIf='pan.errors.required'>
-                        <small>this field is mandatory</small>
-                    </div>
-                    <div class="alert alert-danger" *ngIf='pan.errors.pattern'>
-                        <small>Please enter a valid  PAN, eg: ABCDE1234F</small>
-                    </div>
-                </div>
-            </div> -->
             <div class="form-group">
                 <label for="loanAmount">Loan Amount<span style="color: red;">*</span></label>
                 <input type="number" name="loanAmount" id="loanAmount" class="form-control"
@@ -87,20 +74,15 @@
             </div>
             <div class="form-group">
                 <label for="loanType">Choose a loan<span style="color:red;">*</span></label>
-                <select class="custom-select" name="loanType" id="loantype" #loantype='ngModel' ngModel required>
-                    <option selected hidden disabled value="">Chooce a loan</option>
-                    <option value="Home Purchase Loan">Home Purchase Loan</option>
-                    <option value="Home Construction Loan">Home Construction Loan</option>
-                    <option value="House Improvement Loan">House Improvement Loan</option>
-                    <option value="House Extension Loan">House Extension Loan</option>
-                    <option value="Land Purchase Loan">Land Purchase Loan</option>
+                <select class="form-control" name="loanType" id="loanType" #loanType='ngModel' ngModel required>
+                    <option selected disabled value="">Select Loan</option>
+                    <option *ngFor='let loan of loans'>{{loan}}</option>
                 </select>
-                <div *ngIf='loantype.invalid && loantype.touched'>
-                    <div class="alert alert-danger" *ngIf='loantype.errors.required'>
-                        <small>this field is mandatory</small>
+                <div *ngIf='loanType.touched && loanType.invalid'>
+                    <div class="alert alert-danger" *ngIf='loanType.errors.required'>
+                        <small>This field is mandatory</small>
                     </div>
                 </div>
-                
             </div>
         </div>
         <div class="card-footer bg-info">

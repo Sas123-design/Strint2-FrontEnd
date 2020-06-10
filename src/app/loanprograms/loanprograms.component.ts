@@ -33,6 +33,7 @@ export class LoanprogramsComponent implements OnInit {
   fieldName;
   searchValue;
   message: string;
+  loanTypes;
   constructor(private loanprogramService: LoanprogramsService,public service: UserServiceService,
               private router: Router) {}
   
@@ -81,4 +82,6 @@ export class LoanprogramsComponent implements OnInit {
   selectProgram(program){
     this.router.navigate(['/edit-loanprogram'], {queryParams: program});
   }
+
+  
 }

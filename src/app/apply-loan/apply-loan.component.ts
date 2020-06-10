@@ -10,9 +10,11 @@ import { NgForm } from '@angular/forms';
 export class ApplyLoanComponent implements OnInit {
 
   message: string;
+  loans;
   constructor(private application: ApplicationService) { }
 
   ngOnInit(): void {
+    this.getProgramTypes();
   }
 
   postApplication(form : NgForm){
@@ -38,6 +40,13 @@ export class ApplyLoanComponent implements OnInit {
           this.message=null;
         },5000);
       }
+    })
+    
+  }
+  getProgramTypes(){
+    this.application.getProgramTypes().subscribe(response=>{
+      console.log(response);
+      this.loans=response;
     })
   }
 }

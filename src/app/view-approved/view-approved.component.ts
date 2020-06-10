@@ -8,22 +8,30 @@ import { StatusServiceService } from '../status-service.service';
   styleUrls: ['./view-approved.component.css']
 })
 export class ViewApprovedComponent implements OnInit {
-
-
+  users;
+  pageNo=0;
+  itemsPerPage=2;
+  totalItems;
   constructor(private service: StatusServiceService) {
-    this.getApprovedApplication();
+    this.getApproved();
   }
 
   ngOnInit(): void {
+    
   }
-
-  users;
-
-  getApprovedApplication(){
+  getApproved(){
     this.service.getApproved().subscribe(response=>{
       console.log(response);
       this.users=response.data;
     })
   }
+  
+  getNextPageItem(event){
+    console.log(event);
+    this.pageNo=event.pageIndex;
+    this.itemsPerPage=event.pageSize;
+    this.getApproved();
+  }
+
 
 }

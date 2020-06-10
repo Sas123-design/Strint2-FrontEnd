@@ -61,11 +61,11 @@ export class RegistrationComponent implements OnInit {
     console.log(apply);
     this.userService.postData(apply).subscribe(response=>{
       console.log(response);
+      form.reset();
         this.message=response.message;
         this.error=response.error;
         setTimeout(()=>{
           this.message=null;
-          this.error=false;
         },5000);
     })
   }

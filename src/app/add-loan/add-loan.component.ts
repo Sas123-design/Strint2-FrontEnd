@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoanprogramsService } from '../loanprograms.service';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-loan',
@@ -9,7 +10,8 @@ import { NgForm } from '@angular/forms';
 })
 export class AddLoanComponent implements OnInit {
 
-  constructor(private loanProgram:LoanprogramsService) { }
+  constructor(private loanProgram:LoanprogramsService,
+              private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -17,6 +19,7 @@ export class AddLoanComponent implements OnInit {
   postLoanProgram(form : NgForm){
     this.loanProgram.postData(form.value).subscribe(response=>{
       console.log(response);
+      this.router.navigateByUrl('/loanprograms');
     });
   }
 }

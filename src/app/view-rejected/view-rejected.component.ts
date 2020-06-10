@@ -9,29 +9,24 @@ import { StatusServiceService } from '../status-service.service';
 export class ViewRejectedComponent implements OnInit {
 
   users;
-  page=0;
+  pageNo=0;
   itemsPerPage=2;
   totalItems;
   constructor(private service: StatusServiceService) {
-    this.getRejectedApplication();
-  }
-
-  getRejectedApplication(){
-    // this.service.getPageRejected(this.page,this.itemsPerPage).subscribe(response=>{
-    //   console.log(response);
-    //   this.users=response.content;
-    //   this.totalItems=response.totalElement;
-
-
-    // })
-    this.service.getRejected().subscribe(response=>{
-      console.log(response);
-      this.users=response.data;
-    })
+    this.getRejected();
   }
 
   ngOnInit(): void {
-    
+
   }
+  
+  getRejected(){
+    this.service.getRejected().subscribe(response=>{
+      console.log(response);
+      this.users=response.data;
+      console.log(this.users);
+    })
+  }
+
 
 }

@@ -27,42 +27,28 @@ export class ViewRequestedComponent implements OnInit {
 
   failure: string;
   success: string;
-
-
-  constructor(private service: StatusServiceService, public userService: UserServiceService) {
-    this.getRequestedApplication();
+  pageNo=0;
+  itemsPerPage=2;
+  totalItems;
+  
+  constructor(private service: StatusServiceService, public userService: UserServiceService){ 
+    this.getRequested();
   }
 
-  getRequestedApplication(){
+  ngOnInit(): void {
+  
+  }
+  getRequested(){
     this.service.getRequested().subscribe(response=>{
       console.log(response);
       this.users=response.data;
     })
   }
-
-  makeApproved(applyLoan){
-    this.service.makeStatusApproved(applyLoan).subscribe(response=>{
-      console.log(response);
-      if(response.error===false){
-        this.getRequestedApplication();
-        this.failure=response.message;
-        setTimeout(()=>{
-          this.failure=null;
-        },5000);
-      }else{
-        this.success=response.message;
-        setTimeout(()=>{
-          this.success=null;
-        },5000);
-      }
-    });
-  }
-
   makeRejected(applyLoan){
     this.service.makeStatusRejected(applyLoan).subscribe(response=>{
       console.log(response);
       if(response.error===false){
-        this.getRequestedApplication();
+        this.getRequested();
         this.failure=response.message;
         setTimeout(()=>{
           this.failure=null;
@@ -75,6 +61,35 @@ export class ViewRequestedComponent implements OnInit {
       }
     })
   }
-  ngOnInit(): void {
+  makeApproved(applyLoan){
+    this.service.makeStatusApproved(applyLoan).subscribe(response=>{
+      console.log(response);
+      if(response.error===false){
+        this.getRequested();
+        this.failure=response.message;
+        setTimeout(()=>{
+          this.failure=null;
+        },5000);
+      }else{
+        this.success=response.message;
+        setTimeout(()=>{
+          this.success=null;
+        },5000);
+      }
+    })
   }
+
+  getNextPageItem(event){
+    console.log(event);
+    this.pageNo=event.pageIndex;
+    this.itemsPerPage=event.pageSize;
+    this.getRequested();
+  }
+  
+  
+    
+
+  
+
+
 }

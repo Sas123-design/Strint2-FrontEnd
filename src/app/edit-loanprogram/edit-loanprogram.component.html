@@ -9,7 +9,7 @@
                 required pattern="[A-Z a-z]*" [(ngModel)]='programToUpdate.loanId'>
                 <label for="loanType">Loan Type<span style="color:red;">*</span></label>
                 <input #loanType='ngModel' ngModel type="text" name="loanType" class="form-control" id=""
-                required pattern="[A-Z a-z]{3-20}" [(ngModel)]='programToUpdate.loanType'>
+                required pattern="[A-Z a-z]{3,20}" [(ngModel)]='programToUpdate.loanType'>
                 <div *ngIf='loanType.invalid && loanType.touched'>
                     <div class="alert alert-danger" *ngIf='loanType.errors.pattern'>
                         <small>can't have digits</small>

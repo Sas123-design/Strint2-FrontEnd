@@ -29,8 +29,17 @@ export class StatusServiceService {
     return this.http.put<any>(`${this.url}/makerejected/${applyLoan.loanId}`,applyLoan);
   }
 
-  getPageRejected(pageNo, itemsPerPage){
-    return this.http.get<{content: any[], totalElement: number}>(`${this.url}/rejected/${pageNo}/${itemsPerPage}`);
+  getRejectedPage(pageNo, itemsPerPage){
+    return this.http.get<{content: any[], totalElements: number}>(`${this.url}/getRejected/${pageNo}/${itemsPerPage}`);
+  }
+
+
+  getRequestedPage(pageNo,itemsPerPage){
+    return this.http.get<{content: any[], totalElements: number}>(`${this.url}/getRequested/${pageNo}/${itemsPerPage}`)
+  }
+
+  getApprovedPage(pageNo, itemsPerPage){
+    return this.http.get<{content: any[], totalElements: number}>(`${this.url}/getApproved/${pageNo}/${itemsPerPage}`);
   }
 
 }

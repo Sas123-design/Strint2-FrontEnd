@@ -35,6 +35,9 @@ export class ApplicationService {
     return this.http.put<any>(`${this.url}`,app);
   }
 
+  getProgramTypes(){
+    return this.http.get<any>(`${this.url}/loanprograms`);
+  }
 
 
 }

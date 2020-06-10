@@ -4,13 +4,13 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav mr-auto mt-2 mg-lg-0">
-        <li class="nav-item active">
+      <ul class="navbar-nav">
+        <li class="nav-item">
           <a class="nav-link" routerLink="/home">Home <span class="sr-only">(current)</span></a>
         </li>
       </ul>
       <ul class="navbar-nav">
-        <li class="nav-item" *ngIf='service.isLogged()'>
+        <li class="nav-item" *ngIf='service.isUser()'>
             <a routerLink="/apply-loan" class="nav-link">Apply for Loan</a>
         </li>
         <li class="nav-item" *ngIf='service.isAdmin()'>
@@ -25,10 +25,10 @@
         <li class="nav-item" *ngIf='service.isAdmin()'>
             <a routerLink="/client" class="nav-link" >Clients</a>
         </li>
-        <li class="nav-item" *ngIf='service.isAdmin()'>
+        <!-- <li class="nav-item" *ngIf='service.isAdmin()'>
             <a routerLink="/view-user" class="nav-link">Users</a>
-        </li>
-        <li class="nav-item" *ngIf='service.isLogged()'>
+        </li> -->
+        <li class="nav-item" *ngIf='service.isUser()'>
             <a routerLink="/view-applications" class="nav-link">Your Applications</a>
         </li>
         <li class="nav-item" *ngIf='service.isLad() || service.isAdmin()'>

@@ -16,6 +16,8 @@
     <div style="text-align: center;">
         <h2 style="color: green">Welcome!!!</h2><br>
         <h2 *ngIf='name'>{{name}}</h2>
+    </div>
+    <div *ngIf='userService.isUser()' style="text-align: center;">
         <h3>looking for home loan? Apply here</h3>
         <div>
             <a routerLink="/apply-loan" class="nav-link">Apply</a>

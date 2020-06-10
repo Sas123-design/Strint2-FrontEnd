@@ -15,6 +15,8 @@ export class LoanprogramsService {
     return this.http.post<any>(`${this.url}/addloan`,program);
   }
 
+  
+
   getAllPrograms(){
     return this.http.get(`${this.url}/loan`);  
   }
